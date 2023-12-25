@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<script src="jszip.js"> </script>
+<script src="filesaver.js"> </script>
+<script src="compressor.js"> </script>
+</head>
+<body>
+<h1> Scratch project.json compressor </h1>
+
+<p> This script is intended to compress the project.json of a project. It uses various methods to reduce the size of the file, such as replacing the long block IDs with shorter IDs, removing code comments, and shortening variable names. </p>
+
+<h2> Image guide </h2>
+
+
+<p><img src="safe.png"> = Safe; unnoticable changes. No difference appears in the editor or in runtime. <i>(Ex. shortening block IDs, shortening variable IDs)</i> </p>
+<p><img src="questionable.png"> = Questionable; noticable changes that don't disrupt the editor. The editor is still funtional. <i>(Ex. Removing comments or unused code, moving scripts, renaming variables)</i> </p>
+<p><img src="warning.png"> = Warning; may break editor. The project may no longer be editable but it is still possible to run the project. <i>(Ex. Shadow blocks)</i></p>
+<p><img src="dangerous.png"> = Dangerous; may break project. The project may not work or run properly after selecting this option. <i>Don't enable unless you know what you're doing</i>. <i>(Ex. Data type changes)</i></p>
+<p><img src="unfinished.png"> = Unfinished; won't do anything. The feature may be implemented sometime in the future, but it's not currently available. </p>
+
+<h2> Settings </h2>
+<p> The settings are in the order that they are applied. </p>
+
+<input type="checkbox" class="checkbox" id="commentRemoval" name="commentRemoval" value="commentRemoval">
+<label for="commentRemoval"> Remove Comments <img src="questionable.png"> </label><br>
+
+<input type="checkbox" class="checkbox" id="removeUnusedScripts" name="removeUnusedScripts" value="removeUnusedScripts">
+<label for="removeUnusedScripts"> Remove Unused Scripts <img src="questionable.png"> <img src="unfinished.png"> </label><br>
+
+<input type="checkbox" class="checkbox" id="moveScripts" name="moveScripts" value="moveScripts">
+<label for="moveScripts"> Move Scripts to Origin <img src="questionable.png"> <img src="unfinished.png"> </label><br>
+
+<input type="checkbox" class="checkbox" id="removeMenuBlocks" name="removeMenuBlocks" value="removeMenuBlocks">
+<label for="removeMenuBlocks"> Remove Menu Blocks <img src="questionable.png"> <img src="unfinished.png"> </label><br> 
+
+<input type="checkbox" class="checkbox" id="removeHiddenValues" name="removeHiddenValues" value="removeHiddenValues">
+<label for="removeHiddenValues"> Remove Hidden Values <img src="questionable.png"> <img src="unfinished.png"> </label><br> 
+
+<input type="checkbox" class="checkbox" id="assetNameToNumber" name="assetNameToNumber" value="assetNameToNumber">
+<label for="assetNameToNumber"> Asset Name to Number <img src="questionable.png"> <img src="unfinished.png"> </label><br> 
+
+<input type="checkbox" class="checkbox" id="safeTypeConversion" name="safeTypeConversion" value="safeTypeConversion" checked=true>
+<label for="safeTypeConversion"> Safe Type Conversion <img src="safe.png"> <img src="unfinished.png"> </label><br> 
+
+<input type="checkbox" class="checkbox" id="typeConversion" name="typeConversion" value="typeConversion">
+<label for="typeConversion"> Type Conversion <img src="dangerous.png"> <img src="unfinished.png"> </label><br> 
+
+<input type="checkbox" class="checkbox" id="shadowBlocks" name="shadowBlocks" value="shadowBlocks">
+<label for="shadowBlocks"> Shadow Blocks <img src="warning.png"> <img src="unfinished.png"> </label><br> 
+
+<input type="checkbox" class="checkbox" id="simplifyBlockIDs" name="simplifyBlockIDs" value="simplifyBlockIDs" checked=true>
+<label for="simplifyBlockIDs"> Simplify Block IDs <img src="safe.png"> </label><br>
+
+<input type="checkbox" class="checkbox" id="simplifyVariableIDs" name="simplifyVariableIDs" value="simplifyVariableIDs" checked=true>
+<label for="simplifyVariableIDs"> Simplify Variable IDs <img src="safe.png"> </label><br>
+
+<input type="checkbox" class="checkbox" id="simplifyListIDs" name="simplifyListIDs" value="simplifyListIDs" checked=true>
+<label for="simplifyListIDs"> Simplify List IDs <img src="safe.png"> </label><br>
+
+<input type="checkbox" class="checkbox" id="simplifyCommentIDs" name="simplifyCommentIDs" value="simplifyCommentIDs" checked=true>
+<label for="simplifyCommentIDs"> Simplify Comment IDs <img src="safe.png"> </label><br>
+
+<p> Input file: <input type="file" id="originalFile" name="originalFile" accept=".sb3"/> </p>
+
+<button type="button" onclick="compressClicked();">Compress</button>
+
+<button type="download" onclick="download();">Download</button>
+
+<button type="button" onclick="getJSON();">Get JSON</button>
+
+</body>
+</html>

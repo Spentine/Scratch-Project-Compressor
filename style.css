@@ -1,0 +1,33 @@
+body {
+  background-color: #081018;
+  font-family: "Work Sans";
+  color: #EEF;
+  margin: 20px;
+}
+
+label, p, h1, h2, h3, input[type="file"], button {
+  font-family: inherit;
+  color: inherit;
+} 
+
+p, label {
+  font-size: 20px;
+}
+
+.checkbox {
+  margin: 2px;
+  width: 20px;
+  height: 20px;
+}
+
+button {
+  background-color: #234;
+  padding: 10px;
+  font-size: 30px;
+  border-radius: 4px;
+  transition-duration: 0.1s;
+}
+
+button:hover {
+  background-color: #345;
+}
