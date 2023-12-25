@@ -104,22 +104,6 @@ function compressProjectJSON(projectJSON, options) {
         }
       }
       
-      // make the comments synced up
-      /*
-      const comments = projectJSON.targets[targetIndex].comments;
-      const commentKeys = Object.keys(comments); 
-      for (let i=0; i<commentKeys.length; i++) {
-        let commentBlockID = comments[commentKeys[i]].blockId;
-        if (commentBlockID !== null) {
-          if (commentBlockID in correspondingIDs) {
-            comments[commentKeys[i]].blockId = correspondingIDs[commentBlockID];
-          } else {
-            delete comments[commentKeys[i]];
-          }
-        }
-      }
-      */
-      
       currentTargetBlocks = newBlocks; // overwrite currentTargetBlocks with newBlocks pointer
       
       let commentBlockAssociation = {};
@@ -233,16 +217,6 @@ function compressProjectJSON(projectJSON, options) {
       const currentTargetBlocks = projectJSON.targets[targetIndex].blocks;
       const blockIDs = Object.keys(currentTargetBlocks);
       let commentKeys = Object.keys(currentTargetComments);
-      
-      // ok so the reason all this is commented out is because turns out scratch doesn't really care about comment.blockId but rather block.comment more so im redoing this whole thing
-      /*
-      for (let i=0; i<commentKeys.length; i++) {
-        let comment = currentTargetComments[commentKeys[i]];
-        if ((!(comment.blockId in projectJSON.targets[targetIndex].blocks) || (projectJSON.targets[targetIndex].blocks[comment.blockId].comment && typeof projectJSON.targets[targetIndex].blocks[comment.blockId].length === "undefined") !== commentKeys[i]) && comment.blockId !== null) { // if the blockid is invalid or the block doesnt recognize the comment as its comment unless the block is a variable
-          delete currentTargetComments[commentKeys[i]];
-        }
-      }
-      */
       
       let commentBlockAssociation = {};
       for (i=0; i<blockIDs.length; i++) {
